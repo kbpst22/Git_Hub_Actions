@@ -1,11 +1,17 @@
 name: 02 - Workflow Events
 
 on:
-   push
-
+   push: # Existing trigger (assuming it was there)
+   pull_request: # New trigger
+   schedule: # New trigger: runs every day at 10:00 UTC
+    - cron: '0 10 * * *'
+   workflow_dispatch: # New trigger: allows manual run from the GitHub UI
+  
 jobs: 
   echo:
     runs-on: ubuntu-latest
     steps:
       - name : Show the trigger
         run: echo "The workflow was triggered by a event of types:${{github.event_name }}"
+
+  
